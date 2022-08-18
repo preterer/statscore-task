@@ -5,6 +5,7 @@ import { commaSeparatedFormatter } from "./formatters/comma-separated-formatter"
 import { identityFormatter } from "./formatters/identity-formatter";
 import { Match } from "./interfaces/match";
 import { ParsedMatch } from "./interfaces/parsed-match";
+import { ScoreFormatter } from "./types/score-formatter";
 
 export class EventParser {
   private JOINTS: Record<string, string> & { default: string } = {
@@ -13,12 +14,13 @@ export class EventParser {
     default: " - ",
   } as const;
 
-  private FORMATTERS: Record<string, (match: Match) => string> = {
-    [Sport.SOCCER]: identityFormatter,
-    [Sport.HANDBALL]: identityFormatter,
+  private FORMATTERS: Record<string, ScoreFormatter> & {
+    default: ScoreFormatter;
+  } = {
     [Sport.TENNIS]: commaSeparatedFormatter,
     [Sport.VOLLEYBALL]: commaSeparatedFormatter,
     [Sport.BASKETBALL]: basketballFormatter,
+    default: identityFormatter,
   } as const;
 
   public parseMatch(match: Match): ParsedMatch {
@@ -34,11 +36,7 @@ export class EventParser {
   }
 
   private formatScore(match: Match): string {
-    const formatter = this.FORMATTERS[match.sport];
-    if (formatter) {
-      return formatter(match);
-    }
-
-    throw new InvalidSportError();
+    const formatter = this.FORMATTERS[match.sport] || this.FORMATTERS.default;
+    return formatter(match);
   }
 }
