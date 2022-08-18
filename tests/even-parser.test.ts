@@ -23,7 +23,7 @@ describe("Event parser", () => {
 
   const eventParser = new EventParser();
 
-  it.each(cases)("Should parse $variable.sport", (testCase) => {
+  it.each(cases)("Should parse $match.sport match", (testCase) => {
     const result = eventParser.parseMatch(testCase.match);
     expect(result.name).toBe(testCase.expected.name);
     expect(result.score).toBe(testCase.expected.score);
