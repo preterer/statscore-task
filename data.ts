@@ -1,4 +1,7 @@
-export const matches = [
+import { VALID_SPORTS } from "./enums/sport.enum";
+import { Match } from "./interfaces/match";
+
+export const matches: Match[] = [
   {
     sport: "soccer",
     participant1: "Chelsea",
@@ -35,4 +38,4 @@ export const matches = [
   {
     sport: "ski jumping",
   },
-];
+].filter((match) => VALID_SPORTS.includes(match.sport)) as Match[];
