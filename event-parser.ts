@@ -7,7 +7,7 @@ import { Match } from "./interfaces/match";
 import { ParsedMatch } from "./interfaces/parsed-match";
 
 export class EventParser {
-  private JOINTS = {
+  private JOINTS: Record<string, string> & { default: string } = {
     [Sport.TENNIS]: " vs ",
     [Sport.HANDBALL]: " vs ",
     default: " - ",
