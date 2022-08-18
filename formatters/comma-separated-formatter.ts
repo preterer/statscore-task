@@ -1,8 +1,7 @@
 import { InvalidScoreError } from "../errors/invalid-score-error";
 import { Match } from "../interfaces/match";
 
-// FIXME: find more generic name
-export function tennisFormatter(match: Match): string {
+export function commaSeparatedFormatter(match: Match): string {
   if (typeof match.score !== "string") {
     throw new InvalidScoreError();
   }
