@@ -1,5 +1,4 @@
 import { Sport } from "./enums/sport.enum";
-import { InvalidSportError } from "./errors/invalid-sport-error";
 import { basketballFormatter } from "./formatters/basketball-formatter";
 import { commaSeparatedFormatter } from "./formatters/comma-separated-formatter";
 import { identityFormatter } from "./formatters/identity-formatter";
@@ -7,7 +6,7 @@ import { Match } from "./interfaces/match";
 import { ParsedMatch } from "./interfaces/parsed-match";
 import { ScoreFormatter } from "./types/score-formatter";
 
-export class EventParser {
+export class MatchParser {
   private JOINTS: Record<string, string> & { default: string } = {
     [Sport.TENNIS]: " vs ",
     [Sport.HANDBALL]: " vs ",

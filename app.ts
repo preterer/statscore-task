@@ -1,7 +1,7 @@
 import { matches } from "./data";
-import { EventParser } from "./event-parser";
+import { MatchParser } from "./match-parser";
 
-const parser = new EventParser();
+const parser = new MatchParser();
 
 const matchesParsed = matches.map((match) => parser.parseMatch(match));
 
